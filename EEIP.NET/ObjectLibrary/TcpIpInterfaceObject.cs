@@ -74,7 +74,7 @@ namespace Sres.Net.EEIP.ObjectLibrary
                 PhysicalLink physicalLinkObject = new PhysicalLink();
                 physicalLinkObject.PathSize = (UInt16)(byteArray[1] << 8 | byteArray[0]);
                 if (byteArray.Length > 2)
-                    System.Buffer.BlockCopy(byteArray, 2 , physicalLinkObject.Path, 0, byteArray.Length - 2);
+          Buffer.BlockCopy(byteArray, 2 , physicalLinkObject.Path, 0, byteArray.Length - 2);
                 return physicalLinkObject;
             }
         }
@@ -128,7 +128,7 @@ namespace Sres.Net.EEIP.ObjectLibrary
                 if (value.DomainName != null)
                 {
                     byte[] domainName = Encoding.ASCII.GetBytes(value.DomainName);
-                    System.Buffer.BlockCopy(domainName, 0, valueToWrite, 20, domainName.Length);
+          Buffer.BlockCopy(domainName, 0, valueToWrite, 20, domainName.Length);
                 }
                 eeipClient.SetAttributeSingle(0xF5, 1, 5, valueToWrite);
             }

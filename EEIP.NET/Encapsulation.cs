@@ -55,18 +55,18 @@ namespace Sres.Net.EEIP
         public byte[] toBytes()
         {
             byte[] returnValue = new byte[24 + CommandSpecificData.Count];
-            returnValue[0] = (byte)this.Command;
-            returnValue[1] = (byte)((UInt16)this.Command >> 8);
-            returnValue[2] = (byte)this.Length;
-            returnValue[3] = (byte)((UInt16)this.Length >> 8);
-            returnValue[4] = (byte)this.SessionHandle;
-            returnValue[5] = (byte)((UInt32)this.SessionHandle >> 8);
-            returnValue[6] = (byte)((UInt32)this.SessionHandle >> 16);
-            returnValue[7] = (byte)((UInt32)this.SessionHandle >> 24);
-            returnValue[8] = (byte)this.Status;
-            returnValue[9] = (byte)((UInt16)this.Status >> 8);
-            returnValue[10] = (byte)((UInt16)this.Status >> 16);
-            returnValue[11] = (byte)((UInt16)this.Status >> 24);
+            returnValue[0] = (byte)Command;
+            returnValue[1] = (byte)((UInt16)Command >> 8);
+            returnValue[2] = (byte)Length;
+            returnValue[3] = (byte)((UInt16)Length >> 8);
+            returnValue[4] = (byte)SessionHandle;
+            returnValue[5] = (byte)((UInt32)SessionHandle >> 8);
+            returnValue[6] = (byte)((UInt32)SessionHandle >> 16);
+            returnValue[7] = (byte)((UInt32)SessionHandle >> 24);
+            returnValue[8] = (byte)Status;
+            returnValue[9] = (byte)((UInt16)Status >> 8);
+            returnValue[10] = (byte)((UInt16)Status >> 16);
+            returnValue[11] = (byte)((UInt16)Status >> 24);
             returnValue[12] = senderContext[0];
             returnValue[13] = senderContext[1];
             returnValue[14] = senderContext[2];
@@ -75,10 +75,10 @@ namespace Sres.Net.EEIP
             returnValue[17] = senderContext[5];
             returnValue[18] = senderContext[6];
             returnValue[19] = senderContext[7];
-            returnValue[20] = (byte)this.options;
-            returnValue[21] = (byte)((UInt16)this.options >> 8);
-            returnValue[22] = (byte)((UInt16)this.options >> 16);
-            returnValue[23] = (byte)((UInt16)this.options >> 24);
+            returnValue[20] = (byte)options;
+            returnValue[21] = (byte)((UInt16)options >> 8);
+            returnValue[22] = (byte)((UInt16)options >> 16);
+            returnValue[23] = (byte)((UInt16)options >> 24);
             for (int i = 0; i < CommandSpecificData.Count; i++)
             {
                 returnValue[24 + i] = CommandSpecificData[i];
@@ -188,16 +188,16 @@ namespace Sres.Net.EEIP
                 if (SocketaddrInfo_O_T != null)
                     ItemCount=3;
                 byte[] returnValue = new byte[10 + Data.Count + (SocketaddrInfo_O_T == null ? 0 : 20)];
-                returnValue[0] = (byte)this.ItemCount;
-                returnValue[1] = (byte)((UInt16)this.ItemCount >> 8);
-                returnValue[2] = (byte)this.AddressItem;
-                returnValue[3] = (byte)((UInt16)this.AddressItem >> 8);
-                returnValue[4] = (byte)this.AddressLength;
-                returnValue[5] = (byte)((UInt16)this.AddressLength >> 8);
-                returnValue[6] = (byte)this.DataItem;
-                returnValue[7] = (byte)((UInt16)this.DataItem >> 8);
-                returnValue[8] = (byte)this.DataLength;
-                returnValue[9] = (byte)((UInt16)this.DataLength >> 8);
+                returnValue[0] = (byte)ItemCount;
+                returnValue[1] = (byte)((UInt16)ItemCount >> 8);
+                returnValue[2] = (byte)AddressItem;
+                returnValue[3] = (byte)((UInt16)AddressItem >> 8);
+                returnValue[4] = (byte)AddressLength;
+                returnValue[5] = (byte)((UInt16)AddressLength >> 8);
+                returnValue[6] = (byte)DataItem;
+                returnValue[7] = (byte)((UInt16)DataItem >> 8);
+                returnValue[8] = (byte)DataLength;
+                returnValue[9] = (byte)((UInt16)DataLength >> 8);
                 for (int i = 0; i < Data.Count; i++)
                 {
                     returnValue[10 + i] = Data[i];
@@ -207,26 +207,26 @@ namespace Sres.Net.EEIP
                 // Add Socket Address Info Item
                 if (SocketaddrInfo_O_T != null)
                 {
-                    returnValue[10 + Data.Count + 0] = (byte)this.SockaddrInfoItem_O_T;
-                    returnValue[10 + Data.Count + 1] = (byte)((UInt16)this.SockaddrInfoItem_O_T >> 8);
-                    returnValue[10 + Data.Count + 2] = (byte)this.SockaddrInfoLength;
-                    returnValue[10 + Data.Count + 3] = (byte)((UInt16)this.SockaddrInfoLength >> 8);
-                    returnValue[10 + Data.Count + 5] = (byte)this.SocketaddrInfo_O_T.SIN_family;
-                    returnValue[10 + Data.Count + 4] = (byte)((UInt16)this.SocketaddrInfo_O_T.SIN_family >> 8);
-                    returnValue[10 + Data.Count + 7] = (byte)this.SocketaddrInfo_O_T.SIN_port;
-                    returnValue[10 + Data.Count + 6] = (byte)((UInt16)this.SocketaddrInfo_O_T.SIN_port >> 8);
-                    returnValue[10 + Data.Count + 11] = (byte)this.SocketaddrInfo_O_T.SIN_Address;
-                    returnValue[10 + Data.Count + 10] = (byte)((UInt32)this.SocketaddrInfo_O_T.SIN_Address >> 8);
-                    returnValue[10 + Data.Count + 9] = (byte)((UInt32)this.SocketaddrInfo_O_T.SIN_Address >> 16);
-                    returnValue[10 + Data.Count + 8] = (byte)((UInt32)this.SocketaddrInfo_O_T.SIN_Address >> 24);
-                    returnValue[10 + Data.Count + 12] = this.SocketaddrInfo_O_T.SIN_Zero[0];
-                    returnValue[10 + Data.Count + 13] = this.SocketaddrInfo_O_T.SIN_Zero[1];
-                    returnValue[10 + Data.Count + 14] = this.SocketaddrInfo_O_T.SIN_Zero[2];
-                    returnValue[10 + Data.Count + 15] = this.SocketaddrInfo_O_T.SIN_Zero[3];
-                    returnValue[10 + Data.Count + 16] = this.SocketaddrInfo_O_T.SIN_Zero[4];
-                    returnValue[10 + Data.Count + 17] = this.SocketaddrInfo_O_T.SIN_Zero[5];
-                    returnValue[10 + Data.Count + 18] = this.SocketaddrInfo_O_T.SIN_Zero[6];
-                    returnValue[10 + Data.Count + 19] = this.SocketaddrInfo_O_T.SIN_Zero[7];
+                    returnValue[10 + Data.Count + 0] = (byte)SockaddrInfoItem_O_T;
+                    returnValue[10 + Data.Count + 1] = (byte)((UInt16)SockaddrInfoItem_O_T >> 8);
+                    returnValue[10 + Data.Count + 2] = (byte)SockaddrInfoLength;
+                    returnValue[10 + Data.Count + 3] = (byte)((UInt16)SockaddrInfoLength >> 8);
+                    returnValue[10 + Data.Count + 5] = (byte)SocketaddrInfo_O_T.SIN_family;
+                    returnValue[10 + Data.Count + 4] = (byte)((UInt16)SocketaddrInfo_O_T.SIN_family >> 8);
+                    returnValue[10 + Data.Count + 7] = (byte)SocketaddrInfo_O_T.SIN_port;
+                    returnValue[10 + Data.Count + 6] = (byte)((UInt16)SocketaddrInfo_O_T.SIN_port >> 8);
+                    returnValue[10 + Data.Count + 11] = (byte)SocketaddrInfo_O_T.SIN_Address;
+                    returnValue[10 + Data.Count + 10] = (byte)((UInt32)SocketaddrInfo_O_T.SIN_Address >> 8);
+                    returnValue[10 + Data.Count + 9] = (byte)((UInt32)SocketaddrInfo_O_T.SIN_Address >> 16);
+                    returnValue[10 + Data.Count + 8] = (byte)((UInt32)SocketaddrInfo_O_T.SIN_Address >> 24);
+                    returnValue[10 + Data.Count + 12] = SocketaddrInfo_O_T.SIN_Zero[0];
+                    returnValue[10 + Data.Count + 13] = SocketaddrInfo_O_T.SIN_Zero[1];
+                    returnValue[10 + Data.Count + 14] = SocketaddrInfo_O_T.SIN_Zero[2];
+                    returnValue[10 + Data.Count + 15] = SocketaddrInfo_O_T.SIN_Zero[3];
+                    returnValue[10 + Data.Count + 16] = SocketaddrInfo_O_T.SIN_Zero[4];
+                    returnValue[10 + Data.Count + 17] = SocketaddrInfo_O_T.SIN_Zero[5];
+                    returnValue[10 + Data.Count + 18] = SocketaddrInfo_O_T.SIN_Zero[6];
+                    returnValue[10 + Data.Count + 19] = SocketaddrInfo_O_T.SIN_Zero[7];
                 }
                     return returnValue;
             }

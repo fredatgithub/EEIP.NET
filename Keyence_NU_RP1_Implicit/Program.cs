@@ -25,11 +25,11 @@ namespace Keyence_NU_RP1_Implicit
             //Parameters from Originator -> Target
             eeipClient.O_T_InstanceID = 0xfe;              //Instance ID of the Output Assembly
             eeipClient.O_T_Length = 0;                     
-            eeipClient.O_T_RealTimeFormat = Sres.Net.EEIP.RealTimeFormat.Header32Bit;   //Header Format
+            eeipClient.O_T_RealTimeFormat = RealTimeFormat.Header32Bit;   //Header Format
             eeipClient.O_T_OwnerRedundant = false;
-            eeipClient.O_T_Priority = Sres.Net.EEIP.Priority.Low;
+            eeipClient.O_T_Priority = Priority.Low;
             eeipClient.O_T_VariableLength = false;
-            eeipClient.O_T_ConnectionType = Sres.Net.EEIP.ConnectionType.Point_to_Point;
+            eeipClient.O_T_ConnectionType = ConnectionType.Point_to_Point;
             eeipClient.RequestedPacketRate_O_T = 500000;    //RPI in  500ms is the Standard value
 
 
@@ -37,11 +37,11 @@ namespace Keyence_NU_RP1_Implicit
             //Parameters from Target -> Originator
             eeipClient.T_O_InstanceID = 0x66;
             eeipClient.T_O_Length = 2;
-            eeipClient.T_O_RealTimeFormat = Sres.Net.EEIP.RealTimeFormat.Modeless;
+            eeipClient.T_O_RealTimeFormat = RealTimeFormat.Modeless;
             eeipClient.T_O_OwnerRedundant = false;
-            eeipClient.T_O_Priority = Sres.Net.EEIP.Priority.Scheduled;
+            eeipClient.T_O_Priority = Priority.Scheduled;
             eeipClient.T_O_VariableLength = false;
-            eeipClient.T_O_ConnectionType = Sres.Net.EEIP.ConnectionType.Multicast;
+            eeipClient.T_O_ConnectionType = ConnectionType.Multicast;
             eeipClient.RequestedPacketRate_T_O = 500000;    //RPI in  500ms is the Standard value
 
             //Forward open initiates the Implicit Messaging

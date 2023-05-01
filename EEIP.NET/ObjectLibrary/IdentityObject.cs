@@ -189,7 +189,7 @@ namespace Sres.Net.EEIP.ObjectLibrary
                 for (int i = 0; i < returnValue.Length; i++)
                 {
                     byte[] byteArray2 = new byte[3];
-                    System.Buffer.BlockCopy(byteArray, i*3, byteArray2, 0, 3);
+          Buffer.BlockCopy(byteArray, i*3, byteArray2, 0, 3);
                     returnValue[i] = Encoding.UTF8.GetString(byteArray2);
                 }
                 return returnValue;
@@ -230,7 +230,7 @@ namespace Sres.Net.EEIP.ObjectLibrary
                 returnValue.Status = (UInt16)(byteArray[9] << 8 | byteArray[8]);
                 returnValue.SerialNumber = ((UInt32)byteArray[13] << 24 | (UInt32)byteArray[12] << 16 | (UInt32)byteArray[11] << 8 | (UInt32)byteArray[10]);
                 byte[] productName = new byte[byteArray[14]];
-                System.Buffer.BlockCopy(byteArray, 15, productName, 0, productName.Length);
+        Buffer.BlockCopy(byteArray, 15, productName, 0, productName.Length);
                 returnValue.ProductName = Encoding.UTF8.GetString(productName);
                 return returnValue;
             }
